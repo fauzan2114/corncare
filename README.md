@@ -299,8 +299,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 For questions or support:
-- Email: your.email@example.com
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- Email: corncare.global@gmail.com
+- GitHub: [fauzan2114](https://github.com/fauzan2114)
 
 ## 🔮 Future Enhancements
 
