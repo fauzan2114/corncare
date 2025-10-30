@@ -1,0 +1,6 @@
+{
+  "val_accuracy_pct": 85.3,
+  "top2_accuracy_pct": 97.01,
+  "cpu_latency_median_ms": 147.0,
+  "model_file": "corn_disease_model_best_20250918-141251.h5"
+}

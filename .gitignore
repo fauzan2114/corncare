@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/env/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+backend/logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Model files (large files - exclude from repository)
+*.h5
+*.keras
+*.npz
+
+# Uploads and temporary files
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/expert_uploads/*
+!backend/expert_uploads/.gitkeep
+backend/chat_attachments/*
+!backend/chat_attachments/.gitkeep
+backend/downloads/*
+!backend/downloads/.gitkeep
+backend/resume_uploads/*
+!backend/resume_uploads/.gitkeep
+backend/accepted_samples/*
+!backend/accepted_samples/.gitkeep
+backend/ood_samples/*
+!backend/ood_samples/.gitkeep
+
+# Test and backup files
+*.bak
+*.backup
+cleanup_backup_list.txt
+
+# OTP storage (development)
+backend/otp_storage.json
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Training checkpoints (optional - these are large)
+backend/corn_disease_model_best_*.h5
+backend/enhanced_models/*.h5
+
+# Dataset (large - excluded to reduce repository size)
+backend/dataset/
+
+# Package locks (optional - uncomment if you want team members to have exact versions)
+# frontend/package-lock.json
+# frontend/yarn.lock

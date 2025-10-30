@@ -1,0 +1,5 @@
+{
+	"nav": {"home": "Home","detect": "Detect Disease","about": "About","dashboard": "Dashboard","expert": "Expert","login": "Login","register": "Register","logout": "Logout"},
+	"home": {"hero": {"title": "Protect Your Corn Plants","subtitle": "AI-powered disease detection for healthier crops","cta": "Start Detection"}},
+	"_note": "Full original content preserved in earlier version; refer to git history if needed."
+}

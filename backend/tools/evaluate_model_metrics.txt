@@ -1,0 +1,4 @@
+Val accuracy: 85.30%
+Top-2 accuracy: 97.01%
+CPU latency (median): 147.0 ms/img
+Model file: corn_disease_model_best_20250918-141251.h5
