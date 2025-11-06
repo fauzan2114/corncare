@@ -277,13 +277,9 @@ The application features smooth, professional animations:
 
 Supported languages:
 - English (en)
-- Bahasa Indonesia (id)
+- Hindi (hi)
 
 Toggle language using the language selector in the navigation bar.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👥 Contributors
 
