@@ -296,7 +296,7 @@ Toggle language using the language selector in the navigation bar.
 
 For questions or support:
 - Email: corncare.global@gmail.com
-- GitHub: [fauzan2114](https://github.com/fauzan2114)
+- GitHub: [@fauzan2114](https://github.com/fauzan2114)
 
 ## 🔮 Future Enhancements
 

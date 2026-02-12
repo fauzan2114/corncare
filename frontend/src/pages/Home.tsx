@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="min-h-screen relative">
@@ -119,52 +121,54 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Expert Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12 rounded-3xl shadow-2xl text-white relative overflow-hidden animate-fade-in hover:scale-[1.02] transition-transform duration-500">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16 animate-pulse"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12 animate-pulse" style={{animationDelay: '1s'}}></div>
-          </div>
-          
-          <div className="relative text-center">
-            <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 bg-white/20 rounded-full flex items-center justify-center hover:rotate-12 hover:scale-110 transition-all duration-300 cursor-pointer">
-                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+        {/* Expert Section - Only show when user is NOT logged in */}
+        {!user && (
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12 rounded-3xl shadow-2xl text-white relative overflow-hidden animate-fade-in hover:scale-[1.02] transition-transform duration-500 mb-20">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16 animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12 animate-pulse" style={{animationDelay: '1s'}}></div>
+            </div>
+            
+            <div className="relative text-center">
+              <div className="flex justify-center mb-6">
+                <div className="h-16 w-16 bg-white/20 rounded-full flex items-center justify-center hover:rotate-12 hover:scale-110 transition-all duration-300 cursor-pointer">
+                  <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                🎓 Are you an Agricultural Expert?
+              </h2>
+              <p className="text-blue-100 mb-8 text-lg max-w-2xl mx-auto">
+                Join our prestigious expert panel to help farmers with professional consultation and share your agricultural expertise with the global farming community.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <Link 
+                  to="/expert-register" 
+                  className="bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-gray-100 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center group"
+                >
+                  <svg className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  📝 Register as Expert
+                </Link>
+                <Link 
+                  to="/expert-login" 
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white hover:text-blue-600 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center group"
+                >
+                  <svg className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                  🔐 Expert Login
+                </Link>
               </div>
             </div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              🎓 Are you an Agricultural Expert?
-            </h2>
-            <p className="text-blue-100 mb-8 text-lg max-w-2xl mx-auto">
-              Join our prestigious expert panel to help farmers with professional consultation and share your agricultural expertise with the global farming community.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Link 
-                to="/expert-register" 
-                className="bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-gray-100 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center group"
-              >
-                <svg className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                📝 Register as Expert
-              </Link>
-              <Link 
-                to="/expert-login" 
-                className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white hover:text-blue-600 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center justify-center group"
-              >
-                <svg className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                </svg>
-                🔐 Expert Login
-              </Link>
-            </div>
           </div>
-        </div>
+        )}
 
         {/* Call to Action */}
         <div className="mt-20 text-center">

@@ -14,19 +14,109 @@
   
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100;
+    @apply bg-gradient-to-b from-gray-50 to-gray-100;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 rounded-full;
+    @apply bg-gradient-to-b from-green-400 to-blue-500 rounded-full;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400;
+    @apply from-green-500 to-blue-600;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+    background-size: 1000px 100%;
   }
 }
 

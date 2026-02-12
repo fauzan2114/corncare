@@ -126,24 +126,26 @@ def is_corn_like_image(image: Image.Image) -> tuple[bool, dict]:
             "brightness_std": brightness_std,
             "brightness_mean": brightness_mean
         }
-        
-        # Decision logic (stricter):
-        # Must have reasonable green content (0.10 to 0.85) - tightened range
+
+        # Decision logic (balanced):
+        # Must have reasonable green content
         # Should not be too blue (sky/water)
         # Should have some texture complexity
-        # Reject if too much bright green (rice characteristic)
+        # Be tolerant to bright green but cap it
         # Corn leaves are typically darker/duller green
-        has_green = 0.10 <= green_ratio <= 0.85
-        not_too_blue = blue_ratio < 0.25
-        has_texture = color_variance > 150  # Stricter texture requirement
-        reasonable_brightness = brightness_std > 10  # More variation required
-        not_rice_like = bright_green_ratio < 0.4  # Reject very bright green (rice)
-        not_too_bright = brightness_mean < 180  # Corn leaves usually darker
-        
-        is_valid = (has_green and not_too_blue and has_texture and 
-                   reasonable_brightness and not_rice_like and not_too_bright)
-        
+        has_green = 0.08 <= green_ratio <= 0.90
+        not_too_blue = blue_ratio < 0.30
+        has_texture = color_variance > 100
+        reasonable_brightness = brightness_std > 7
+        not_rice_like = bright_green_ratio < 0.60
+        not_too_bright = brightness_mean < 200
+
+        is_valid = (
+            has_green and not_too_blue and has_texture and
+            reasonable_brightness and not_rice_like and not_too_bright
+        )
+
         return is_valid, metrics
-        
+
     except Exception as e:
         return False, {"error": str(e)}

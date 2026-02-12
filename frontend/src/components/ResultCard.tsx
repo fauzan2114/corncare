@@ -15,6 +15,13 @@ interface ResultCardProps {
   confidence: number;
   cure: string;
   tips: string;
+  // Both language versions for client-side switching
+  disease_name_en?: string;
+  disease_name_hi?: string;
+  cure_en?: string;
+  cure_hi?: string;
+  tips_en?: string;
+  tips_hi?: string;
   status?: 'certain' | 'uncertain';
   uncertainty_details?: UncertaintyDetails;
   all_predictions?: Record<string, number>;
@@ -26,17 +33,28 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   disease_name, 
   confidence, 
   cure, 
-  tips, 
+  tips,
+  disease_name_en,
+  disease_name_hi,
+  cure_en,
+  cure_hi,
+  tips_en,
+  tips_hi,
   status = 'certain',
   uncertainty_details,
   all_predictions,
   recommendation 
 }) => {
-  const { t } = useTranslation();
-
-  const displayName = disease_name || t(`diseases.${label}.name`);
-  const displayCure = cure || t(`diseases.${label}.cure`);
-  const displayTips = tips || t(`diseases.${label}.tips`);
+  const { t, i18n } = useTranslation();
+  
+  // Use language-specific versions if available, otherwise fall back to the main fields or translations
+  const isHindi = i18n.language === 'hi';
+  const displayName = (isHindi && disease_name_hi) ? disease_name_hi : 
+                      (disease_name_en || disease_name || t(`diseases.${label}.name`));
+  const displayCure = (isHindi && cure_hi) ? cure_hi : 
+                      (cure_en || cure || t(`diseases.${label}.cure`));
+  const displayTips = (isHindi && tips_hi) ? tips_hi : 
+                      (tips_en || tips || t(`diseases.${label}.tips`));
 
   // Determine confidence color based on status and value
   const getConfidenceColor = () => {

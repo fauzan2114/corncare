@@ -26,7 +26,7 @@ export interface PredictionResponse {
   tips: string;
 }
 
-export const predictDisease = async (file: File): Promise<PredictionResponse> => {
+export const predictDisease = async (file: File, language?: string): Promise<PredictionResponse> => {
   const formData = new FormData();
   formData.append('file', file);
 
@@ -35,7 +35,11 @@ export const predictDisease = async (file: File): Promise<PredictionResponse> =>
     // Debug: show the full URL used for the request
     // eslint-disable-next-line no-console
     console.debug('[api] POST', fullUrl);
-    const response = await axios.post<PredictionResponse>(fullUrl, formData);
+    const response = await axios.post<PredictionResponse>(fullUrl, formData, {
+      headers: {
+        'Accept-Language': language || 'en'
+      }
+    });
 
     return response.data;
   } catch (err: any) {

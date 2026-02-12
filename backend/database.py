@@ -18,6 +18,28 @@ async def connect_to_mongo():
     db.client = AsyncIOMotorClient(MONGODB_URL)
     db.database = db.client[DATABASE_NAME]
     print(f"Connected to MongoDB at {MONGODB_URL}")
+    
+    # Create indexes
+    try:
+        # Drop old username index if it exists (non-sparse)
+        try:
+            await db.database.users.drop_index("username_1")
+            print("Dropped old username index")
+        except:
+            pass  # Index might not exist
+        
+        # Create sparse unique index for username (allows multiple nulls)
+        await db.database.users.create_index("username", unique=True, sparse=True)
+        
+        # Create unique index for phone_number
+        await db.database.users.create_index("phone_number", unique=True, sparse=True)
+        
+        # Create unique index for email
+        await db.database.users.create_index("email", unique=True, sparse=True)
+        
+        print("Database indexes created successfully")
+    except Exception as e:
+        print(f"Note: Index creation skipped or failed: {e}")
 
 async def close_mongo_connection():
     """Close database connection"""

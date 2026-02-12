@@ -181,13 +181,24 @@ export interface PredictionResponse {
   confidence: number;
   cure: string;
   tips: string;
+  // Both language versions for client-side switching
+  disease_name_en: string;
+  disease_name_hi: string;
+  cure_en: string;
+  cure_hi: string;
+  tips_en: string;
+  tips_hi: string;
 }
 
-export const predictDisease = async (file: File): Promise<PredictionResponse> => {
+export const predictDisease = async (file: File, language?: string): Promise<PredictionResponse> => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const response = await api.post('/predict', formData);
+  const response = await api.post('/predict', formData, {
+    headers: {
+      'Accept-Language': language || 'en'
+    }
+  });
   return response.data;
 };
 

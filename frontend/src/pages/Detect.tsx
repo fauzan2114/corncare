@@ -6,7 +6,7 @@ import { predictDisease, PredictionResponse, createExpertRequest, getHistory } f
 import { AuthContext } from '../contexts/AuthContext';
 
 const Detect: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [preview, setPreview] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>('');
@@ -83,7 +83,7 @@ const Detect: React.FC = () => {
 
       // Upload and predict
       setIsLoading(true);
-      const prediction = await predictDisease(selectedFile);
+      const prediction = await predictDisease(selectedFile, i18n.language);
       setResult(prediction);
       
       // Get the latest detection ID for PDF download

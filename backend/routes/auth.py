@@ -84,8 +84,10 @@ async def register_phone(user_data: PhoneRegistration):
         )
     
     # Store or update user data (use cleaned phone number)
+    # Generate a unique username for phone users to avoid duplicate key error
     user_doc = {
         "phone_number": clean_phone,
+        "username": f"user_{clean_phone}",  # Generate unique username from phone
         "is_verified": False,
         "created_at": datetime.utcnow()
     }
